@@ -1,0 +1,16 @@
+{
+  "name": "edgewire-ws",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "nodemon index.ts"
+  },
+  "dependencies": {
+    "ws": "^8.13.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21",
+    "tsx": "^3.12.5",
+    "typescript": "^5.0.2"
+  }
+}
