@@ -3,5 +3,5 @@
   "execMap": {
     "ts": "tsx"
   },
-  "watch": ["controllers/**/*", "models/**/*", "routes/**/*"]
+  "watch": ["controllers/**/*", "models/**/*", "routes/**/*", "utils/**/*"]
 }
