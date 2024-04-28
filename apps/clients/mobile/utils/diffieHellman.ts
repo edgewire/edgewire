@@ -1,7 +1,8 @@
-import { DiffieHellman, createDiffieHellman } from "diffie-hellman";
+import { createDiffieHellman } from "diffie-hellman";
+
+const dh = createDiffieHellman(2048);
 
 export function generateKeys() {
-  const dh = createDiffieHellman(2048);
   const clientPrivateKey = dh.generateKeys();
   const clientPublicKey = dh.getPublicKey();
   const clientSecret = dh.getPrivateKey();
@@ -9,18 +10,20 @@ export function generateKeys() {
   return { clientPrivateKey, clientPublicKey, clientSecret };
 }
 
-export function computeSharedSecret(
-  dh: DiffieHellman,
-  serverPublicKey: string
-) {
+export function computeSharedSecret(serverPublicKey: string) {
   const sharedSecret = dh.computeSecret(serverPublicKey, "binary", "hex");
   return sharedSecret;
 }
 
 export function exchangeKeys() {
-  const data = fetch("http://localhost:8080/generate_keys").then((res) =>
-    res.text()
-  );
+  const { clientPublicKey } = generateKeys();
+
+  const data = fetch("http://localhost:8080/exchange_keys", {
+    method: "POST",
+    body: JSON.stringify({ clientPubKey: clientPublicKey }),
+  })
+    .then((res) => res.json())
+    .then((data) => computeSharedSecret(data.serverPublicKey));
 
   console.log(data);
 }
