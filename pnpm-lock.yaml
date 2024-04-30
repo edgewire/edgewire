@@ -85,6 +85,19 @@ importers:
         specifier: ^5.2.0
         version: 5.2.10
 
+  packages/edgewire.js:
+    dependencies:
+      diffie-hellman:
+        specifier: ^5.0.3
+        version: 5.0.3
+    devDependencies:
+      '@tsconfig/node20':
+        specifier: ^20.1.4
+        version: 20.1.4
+      typescript:
+        specifier: ^5.4.5
+        version: 5.4.5
+
 packages:
 
   /@aashutoshrathi/word-wrap@1.2.6:
@@ -3107,6 +3120,10 @@ packages:
     resolution: {integrity: sha512-/JLo/l2JsT/LRd80C3HfbmVpxOAJ11FO2RCEslFrgzLltoP9j8XIbsyDcfCt2WWyX+CM96rBoNM+IToAkFOugg==}
     dependencies:
       '@swc/counter': 0.1.3
+    dev: true
+
+  /@tsconfig/node20@20.1.4:
+    resolution: {integrity: sha512-sqgsT69YFeLWf5NtJ4Xq/xAF8p4ZQHlmGW74Nu2tD4+g5fAsposc4ZfaaPixVu4y01BEiDCWLRDCvDM5JOsRxg==}
     dev: true
 
   /@types/diffie-hellman@5.0.3:

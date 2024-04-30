@@ -1,0 +1,31 @@
+{
+  "name": "edgewire.js",
+  "version": "0.0.1",
+  "description": "Edgewire client library for JavaScript",
+  "type": "module",
+  "module": "index.js",
+  "types": "types/index.d.ts",
+  "scripts": {
+    "generate-types": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/edgewire/edgewire.git"
+  },
+  "keywords": [
+    "edgewire"
+  ],
+  "author": "Frolleks",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/edgewire/edgewire/issues"
+  },
+  "homepage": "https://github.com/edgewire/edgewire#readme",
+  "dependencies": {
+    "diffie-hellman": "^5.0.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node20": "^20.1.4",
+    "typescript": "^5.4.5"
+  }
+}
