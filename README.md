@@ -29,7 +29,7 @@ edgewire.js is licensed under the MIT license.
 ```
 MIT License
 
-Copyright (c) 2024-present Frolleks
+Copyright (c) 2024-present Frolleks and Edgewire contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
