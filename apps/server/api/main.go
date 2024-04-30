@@ -29,18 +29,31 @@ func GenerateSharedSecret(serverPrivKey *ecdh.PrivateKey, clientPublicKey *ecdh.
 	return secret
 }
 
+type KeyExchangeBody struct {
+	ClientPublicKey string `json:"client_public_key"`
+}
+
+type KeyExchangeResponse struct {
+	ServerPublicKey []byte `json:"server_public_key"`
+}
+
 func ExchangeKeys(c *fiber.Ctx) error {
-	// Assume the client sends their public key in a JSON format
-	var clientPubKey ecdh.PublicKey
-	if err := c.BodyParser(&clientPubKey); err != nil {
+	var body KeyExchangeBody
+	if err := c.BodyParser(&body); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid public key format"})
 	}
 
-	// Generate server keys
-	_, serverPubKey := GenerateKeys()
+	_, serverPublicKey := GenerateKeys()
 
-	// Send the server public key back to the client
-	return c.JSON(fiber.Map{"serverPublicKey": serverPubKey})
+	if !serverPublicKey.Equal(body.ClientPublicKey) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"error": "invalid public key"})
+	}
+
+	response := KeyExchangeResponse{
+		ServerPublicKey: serverPublicKey.Bytes(),
+	}
+
+	return c.JSON(response)
 }
 
 func SetupRoutes(app *fiber.App) {
