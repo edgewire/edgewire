@@ -26,8 +26,6 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
-    "@types/diffie-hellman": "^5.0.3",
-    "@types/node": "^20.12.7",
     "typescript": "^5.4.5"
   }
 }

@@ -55,7 +55,7 @@ export class DiffieHellman {
   exchangeKeys() {
     const { clientPublicKey } = this.generateKeys();
 
-    const data = fetch("http://localhost:8080/exchange_keys", {
+    const data = fetch(`${this.baseURL}/exchange_keys`, {
       method: "POST",
       body: JSON.stringify({ client_public_key: clientPublicKey }),
     }).then((res) => res.json());
