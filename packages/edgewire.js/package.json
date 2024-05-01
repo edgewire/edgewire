@@ -2,11 +2,43 @@
   "name": "edgewire.js",
   "version": "0.0.1",
   "description": "Edgewire client library for JavaScript",
-  "type": "module",
-  "module": "index.js",
-  "types": "types/index.d.ts",
+  "module": "./dist/es/index.mjs",
+  "main": "./dist/cjs/index.cjs",
+  "types": "./dist/cjs/index.d.ts",
+  "exports": {
+    "./Client": {
+      "import": {
+        "types": "./dist/es/Client.d.ts",
+        "default": "./dist/es/Client.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/Client.d.ts",
+        "default": "./dist/cjs/Client.cjs"
+      }
+    },
+    "./DiffieHellman": {
+      "import": {
+        "types": "./dist/es/DiffieHellman.d.ts",
+        "default": "./dist/es/DiffieHellman.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/DiffieHellman.d.ts",
+        "default": "./dist/cjs/DiffieHellman.cjs"
+      }
+    },
+    ".": {
+      "import": {
+        "types": "./dist/es/index.d.ts",
+        "default": "./dist/es/index.mjs"
+      },
+      "require": {
+        "types": "./dist/cjs/index.d.ts",
+        "default": "./dist/cjs/index.cjs"
+      }
+    }
+  },
   "scripts": {
-    "generate-types": "tsc"
+    "build": "bunchee"
   },
   "repository": {
     "type": "git",
@@ -26,6 +58,11 @@
   },
   "devDependencies": {
     "@tsconfig/node20": "^20.1.4",
+    "bunchee": "^5.1.4",
+    "rimraf": "^5.0.5",
     "typescript": "^5.4.5"
-  }
+  },
+  "files": [
+    "dist"
+  ]
 }

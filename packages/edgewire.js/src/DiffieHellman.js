@@ -49,18 +49,33 @@ export class DiffieHellman {
   /**
    * This exchanges public DH keys in the client with the server.
    *
-   * @return {{server_public_key: Buffer}}
+   * @return {{serverPublicKey: Buffer}}
    * @memberof DiffieHellman
    */
   exchangeKeys() {
     const { clientPublicKey } = this.generateKeys();
 
-    const data = fetch(`${this.baseURL}/exchange_keys`, {
-      method: "POST",
-      body: JSON.stringify({ client_public_key: clientPublicKey }),
-    }).then((res) => res.json());
-
     // @ts-ignore
-    return data;
+    return fetch(`${this.baseURL}/exchange_keys`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ client_public_key: clientPublicKey }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        // @ts-ignore
+        return { serverPublicKey: data.server_public_key };
+      })
+      .catch((error) => {
+        console.error("Failed to exchange keys:", error);
+        throw error;
+      });
   }
 }
