@@ -1,11 +1,12 @@
 {
   "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
+    "rootDir": ".",
     "baseUrl": ".",
     "declaration": true,
+    "declarationDir": "types",
     "emitDeclarationOnly": true,
     "checkJs": true
   },
-  "include": ["**/*"],
-  "exclude": ["dist"]
+  "include": ["**/*"]
 }
